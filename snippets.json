@@ -1,0 +1,19 @@
+{
+	"jsx body": {
+		"prefix": "body",
+		"editor.tabCompletion": "on",
+		"body": [
+		  "import React from 'react';",
+		  "",
+		  "import './burger-ingredient.styles.css';",
+		  "",
+		  "const '$1' =(props) =>{",
+		  "",
+		  "};",
+		  "",
+		  "export default '$1';"
+		],
+		"description": "new react template"
+	  }
+
+}
