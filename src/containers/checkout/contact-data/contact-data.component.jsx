@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-
-import CustomButton from '../../../components/UI/custom-button/custom-button.component';
+import { connect } from 'react-redux';
 import axios from '../../../axios-orders.js';
 
 import './contact-data.styles.css';
+import CustomButton from '../../../components/UI/custom-button/custom-button.component';
 import Spinner from '../../../components/UI/spinner/spinner.component';
 import Input from '../../../components/UI/input/input.component';
 
@@ -86,7 +86,7 @@ class ContactData extends Component {
             { value: 'cheap', displayValue: 'Cheap' },
           ],
         },
-        value: '',
+        value: 'spanish',
       },
     },
     loading: false,
@@ -94,6 +94,7 @@ class ContactData extends Component {
 
   orderHandler = (event) => {
     event.preventDefault();
+    
 
     this.setState({ loading: true });
     const formData = {};
@@ -103,7 +104,7 @@ class ContactData extends Component {
       ].value;
     }
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       price: this.props.price,
       orderData: formData,
     };
@@ -181,4 +182,12 @@ class ContactData extends Component {
     );
   }
 }
-export default ContactData;
+
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+
+export default connect(mapStateToProps)(ContactData);
