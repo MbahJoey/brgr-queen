@@ -17,7 +17,7 @@ const WithErrorHandler = (WrappedComponent, axios) => {
       this.resInter = axios.interceptors.response.use(
         ((res) => res,
         (error) => {
-          this.setState({ error: error });
+          this.setState({ error: this.props.error });
         })
       );
     }
@@ -35,10 +35,10 @@ const WithErrorHandler = (WrappedComponent, axios) => {
       return (
         <Fragment>
           <Modal
-            show={this.state.error}
+            show={this.props.error}
             modalClosed={this.errorConfirmedHandler}
           >
-            {this.state.error ? 'Purchase Successful' : null}
+            {this.props.error ? 'Purchase Successful' : null}
           </Modal>
           <WrappedComponent {...this.props} />
         </Fragment>
