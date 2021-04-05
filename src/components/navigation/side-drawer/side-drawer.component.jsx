@@ -8,7 +8,6 @@ import NavigationItems from '../navigation-items/navigation-items.component';
 import './side-drawer.styles.css';
 
 const SideDrawer = (props) => {
-    
   return (
     <Fragment>
       <Backdrop show={props.open} clicked={props.closed} />
@@ -17,7 +16,7 @@ const SideDrawer = (props) => {
           <Logo />
         </div>
         <nav>
-          <NavigationItems />
+          <NavigationItems isAuthenticated={props.isAuth} />
         </nav>
       </div>
     </Fragment>

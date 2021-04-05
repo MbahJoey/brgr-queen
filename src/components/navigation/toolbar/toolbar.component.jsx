@@ -7,12 +7,12 @@ import './toolbar.styles.css';
 
 const Toolbar = (props) => (
   <header className='Toolbar'>
-    <DrawerToggle clicked={props.drawerToggleClicked}/>
+    <DrawerToggle clicked={props.drawerToggleClicked} />
     <div className='LogoTool'>
       <Logo />
     </div>
     <nav className='DesktopOnly'>
-      <NavigationItems />
+      <NavigationItems isAuthenticated={props.isAuth} />
     </nav>
   </header>
 );
