@@ -4,11 +4,11 @@ import { Redirect } from 'react-router-dom';
 
 import Input from '../../components/UI/input/input.component';
 import CustomButton from '../../components/UI/custom-button/custom-button.component';
+import Spinner from '../../components/UI/spinner/spinner.component';
 
 import * as actions from '../../store/actions/index';
 
 import './auth.styles.css';
-import Spinner from '../../components/UI/spinner/spinner.component';
 
 class Auth extends Component {
   state = {
@@ -86,10 +86,14 @@ class Auth extends Component {
     );
   };
 
-  switchAuthModeHandler = () => {
-    this.setState((prevState) => {
-      return { isSignup: !prevState.isSignup };
-    });
+  signInHandler = (event) => {
+    event.preventDefault();
+    this.state.isSignup = !this.state.isSignup;
+    this.props.onAuth(
+      this.state.controls.email.value,
+      this.state.controls.password.value,
+      this.state.isSignup
+    );
   };
 
   render() {
@@ -135,11 +139,13 @@ class Auth extends Component {
         {errorMessage}
         <form onSubmit={this.submitHandler}>
           {form}
-          <CustomButton btnType='Success'>Submit</CustomButton>
+          <CustomButton btnType='Success' clicked={this.signInHandler}>
+            Sing In
+          </CustomButton>
+          <CustomButton btnType='Danger' clicked={this.submitHandler}>
+            Sing Up
+          </CustomButton>
         </form>
-        <CustomButton clicked={this.switchAuthModeHandler} btnType='Danger'>
-          Switch To {this.state.isSignup ? 'Sing In' : 'Sign Up'}
-        </CustomButton>
       </div>
     );
   }

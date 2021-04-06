@@ -1,5 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
-import { updateObject } from '../utillity';
+import { updateObject } from '../../shared/utillity';
 
 const initialState = {
   ingredients: null,
@@ -39,7 +39,7 @@ const reducer = (state = initialState, action) => {
       const updatedIngs = updateObject(state.ingredients, updatedIng);
       const updatedSt = {
         ingredients: updatedIngs,
-        totalPrice: state.totalPrice + INGREDIENT_PRICE[action.ingredientName],
+        totalPrice: state.totalPrice - INGREDIENT_PRICE[action.ingredientName],
       };
       return updateObject(state, updatedSt);
     case actionTypes.SET_INGREDIENTS:
